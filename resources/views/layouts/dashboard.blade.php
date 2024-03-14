@@ -8,11 +8,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Sitopsis</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
-    <link rel="stylesheet" href="./vendor/owl-carousel/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="./vendor/owl-carousel/css/owl.theme.default.min.css">
-    <link href="./vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
-    <link href="./css/style.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/images/favicon.png') }}">
+    <link rel="stylesheet" href="{{ asset('/vendor/owl-carousel/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendor/owl-carousel/css/owl.theme.default.min.css') }}">
+    <link href="{{ asset('/vendor/jqvmap/css/jqvmap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+    <!-- Datatable -->
+    <link href="{{ asset('/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -53,35 +55,39 @@
     </div>
 
     <!-- Required vendors -->
-    <script src="./vendor/global/global.min.js"></script>
-    <script src="./js/quixnav-init.js"></script>
-    <script src="./js/custom.min.js"></script>
+    <script src="{{ asset('/vendor/global/global.min.js') }}"></script>
+    <script src="{{ asset('/js/quixnav-init.js') }}"></script>
+    <script src="{{ asset('/js/custom.min.js') }}"></script>
 
 
     <!-- Vectormap -->
-    <script src="./vendor/raphael/raphael.min.js"></script>
-    <script src="./vendor/morris/morris.min.js"></script>
+    <script src="{{ asset('/vendor/raphael/raphael.min.js') }}"></script>
+    <script src="{{ asset('/vendor/morris/morris.min.js') }}"></script>
 
 
-    <script src="./vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="./vendor/chart.js/Chart.bundle.min.js"></script>
+    <script src="{{ asset('/vendor/circle-progress/circle-progress.min.js') }}"></script>
+    <script src="{{ asset('/vendor/chart.js/Chart.bundle.min.js') }}"></script>
 
-    <script src="./vendor/gaugeJS/dist/gauge.min.js"></script>
+    <script src="{{ asset('/vendor/gaugeJS/dist/gauge.min.js') }}"></script>
 
     <!--  flot-chart js -->
-    <script src="./vendor/flot/jquery.flot.js"></script>
-    <script src="./vendor/flot/jquery.flot.resize.js"></script>
+    <script src="{{ asset('/vendor/flot/jquery.flot.js') }}"></script>
+    <script src="{{ asset('/vendor/flot/jquery.flot.resize.js') }}"></script>
 
     <!-- Owl Carousel -->
-    <script src="./vendor/owl-carousel/js/owl.carousel.min.js"></script>
+    <script src="{{ asset('/vendor/owl-carousel/js/owl.carousel.min.js') }}"></script>
 
     <!-- Counter Up -->
-    <script src="./vendor/jqvmap/js/jquery.vmap.min.js"></script>
-    <script src="./vendor/jqvmap/js/jquery.vmap.usa.js"></script>
-    <script src="./vendor/jquery.counterup/jquery.counterup.min.js"></script>
+    <script src="{{ asset('/vendor/jqvmap/js/jquery.vmap.min.js') }}"></script>
+    <script src="{{ asset('/vendor/jqvmap/js/jquery.vmap.usa.js') }}"></script>
+    <script src="{{ asset('/vendor/jquery.counterup/jquery.counterup.min.js') }}"></script>
 
 
-    <script src="./js/dashboard/dashboard-1.js"></script>
+    <script src="{{ asset('/js/dashboard/dashboard-1.js') }}"></script>
+
+       <!-- Datatable -->
+    <script src="{{ asset('/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('/js/plugins-init/datatables.init.js') }}"></script>
 
 </body>
 
