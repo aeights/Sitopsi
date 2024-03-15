@@ -23,7 +23,7 @@ Header start
                                 <i class="icon-envelope-open"></i>
                                 <span class="ml-2">Inbox </span>
                             </a>
-                            <a href="./page-login.html" class="dropdown-item">
+                            <a href="{{ route('logout') }}" class="dropdown-item">
                                 <i class="icon-key"></i>
                                 <span class="ml-2">Logout </span>
                             </a>
