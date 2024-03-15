@@ -18,7 +18,13 @@
 </head>
 
 <body>
-
+    @if (Session::has('message'))
+    <div class="alert alert-primary alert-dismissible fade show">
+        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
+        </button>
+        {{ session('message') }}
+    </div>
+    @endif
     <!--*******************
         Preloader start
     ********************-->
