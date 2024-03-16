@@ -19,10 +19,17 @@
 
 <body>
     @if (Session::has('message'))
-    <div class="alert alert-primary alert-dismissible fade show">
+    <div class="alert alert-primary alert-dismissible fade show position-absolute m-3" style="z-index: 10">
         <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
         </button>
         {{ session('message') }}
+    </div>
+    @endif
+    @if($errors->any())
+    <div class="alert alert-primary alert-dismissible fade show position-absolute m-3" style="z-index: 10">
+        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
+        </button>
+        {!! implode('', $errors->all('<div>:message</div>')) !!}
     </div>
     @endif
     <!--*******************
@@ -95,6 +102,7 @@
     <script src="{{ asset('/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('/js/plugins-init/datatables.init.js') }}"></script>
 
+    @stack('script')
 </body>
 
 </html>

@@ -4,7 +4,6 @@
     <div class="card mx-4">
         <div class="card-header">
             <h4 class="card-title">Data Profile</h4>
-            <a href="{{ route('admin.profile.edit') }}" class="btn btn-outline-primary">Edit</a>
         </div>
         <div class="card-body">
             <div class="basic-form">
