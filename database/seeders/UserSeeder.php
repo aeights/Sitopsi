@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
                 'role_id' => 2,
                 'name' => 'Admin',
                 'email' => 'admin@mail.com',
-                'password' => 'password',
+                'password' => '111111',
                 'address' => 'Malang',
                 'phone' => '085123456789'
             ],
@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
                 'role_id' => 1,
                 'name' => 'Mahasiswa',
                 'email' => 'mahasiswa@mail.com',
-                'password' => 'password',
+                'password' => '111111',
                 'address' => 'Malang',
                 'phone' => '081123456789',
                 'nim' => '1',

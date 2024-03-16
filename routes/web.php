@@ -60,6 +60,8 @@ Route::middleware(['auth','role:admin'])->group(function () {
         });
         Route::prefix('/profile')->group(function(){
             Route::get('/', [ProfileController::class, 'index'])->name('admin.profile.index');
+            Route::get('/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit');
+            Route::post('/edit', [ProfileController::class, 'update'])->name('admin.profile.update');
         });
     });
 });
