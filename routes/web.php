@@ -54,7 +54,10 @@ Route::middleware(['auth','role:admin'])->group(function () {
         Route::prefix('/alternatif')->group(function(){
             Route::get('/', [AlternatifController::class, 'index'])->name('admin.alternatif.index');
             Route::get('/add', [AlternatifController::class, 'add'])->name('admin.alternatif.add');
-            Route::get('/edit', [AlternatifController::class, 'edit'])->name('admin.alternatif.edit');
+            Route::get('/edit/{id}', [AlternatifController::class, 'edit'])->name('admin.alternatif.edit');
+            Route::post('/store', [AlternatifController::class, 'store'])->name('admin.alternatif.store');
+            Route::post('/update', [AlternatifController::class, 'update'])->name('admin.alternatif.update');
+            Route::get('/{id}', [AlternatifController::class, 'destroy'])->name('admin.alternatif.destroy');
         });
         Route::prefix('/kriteria')->group(function(){
             Route::get('/', [KriteriaController::class, 'index'])->name('admin.kriteria.index');
