@@ -46,7 +46,10 @@ Route::middleware(['auth','role:admin'])->group(function () {
         Route::prefix('/mahasiswa')->group(function(){
             Route::get('/', [MahasiswaController::class, 'index'])->name('admin.mahasiswa.index');
             Route::get('/add', [MahasiswaController::class, 'add'])->name('admin.mahasiswa.add');
-            Route::get('/edit', [MahasiswaController::class, 'edit'])->name('admin.mahasiswa.edit');
+            Route::get('/edit/{id}', [MahasiswaController::class, 'edit'])->name('admin.mahasiswa.edit');
+            Route::post('/store', [MahasiswaController::class, 'store'])->name('admin.mahasiswa.store');
+            Route::post('/update', [MahasiswaController::class, 'update'])->name('admin.mahasiswa.update');
+            Route::get('/{id}', [MahasiswaController::class, 'destroy'])->name('admin.mahasiswa.destroy');
         });
         Route::prefix('/alternatif')->group(function(){
             Route::get('/', [AlternatifController::class, 'index'])->name('admin.alternatif.index');
