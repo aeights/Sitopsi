@@ -40,10 +40,10 @@
                                     @foreach ($students as $index => $student)                                    
                                         <tr role="row">
                                             <td>{{ $index+1 }}</td>
-                                            <td>{{ $student->nama }}</td>
+                                            <td>{{ $student->name }}</td>
                                             <td>{{ $student->nim }}</td>
-                                            <td>{{ $student->fakultas }}</td>
-                                            <td>{{ $student->prodi }}</td>
+                                            <td>{{ $student->major }}</td>
+                                            <td>{{ $student->study_program }}</td>
                                             <td>
                                                 <a href="{{ route('admin.mahasiswa.edit', $student->id) }}" class="badge badge-warning">Edit</a>
                                                 <a href="{{ route('admin.mahasiswa.destroy', $student->id) }}" class="badge badge-danger">Delete</a>

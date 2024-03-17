@@ -29,6 +29,7 @@ class User extends Authenticatable
         'study_program',
         'class',
         'gender',
+        'role_id',
     ];
 
     /**

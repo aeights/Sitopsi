@@ -15,23 +15,11 @@
     <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
     <!-- Datatable -->
     <link href="{{ asset('/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="{{ asset('/vendor/toastr/css/toastr.min.css')}}">
 </head>
 
 <body>
-    @if (Session::has('message'))
-    <div class="alert alert-primary alert-dismissible fade show position-absolute m-3" style="z-index: 10">
-        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
-        </button>
-        {{ session('message') }}
-    </div>
-    @endif
-    @if($errors->any())
-    <div class="alert alert-primary alert-dismissible fade show position-absolute m-3" style="z-index: 10">
-        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
-        </button>
-        {!! implode('', $errors->all('<div>:message</div>')) !!}
-    </div>
-    @endif
     <!--*******************
         Preloader start
     ********************-->
@@ -51,6 +39,13 @@
         Main wrapper start
     ***********************************-->
     <div id="main-wrapper">
+        @if($errors->any())
+        <div class="alert alert-primary alert-dismissible fade show position-absolute m-3" style="z-index: 10; right: 10px; top: 10px;">
+            <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
+            </button>
+            {!! implode('', $errors->all('<div>:message</div>')) !!}
+        </div>
+        @endif
         @include('partials.navbar')
         @include('partials.header')
         @include('partials.sidebar')
@@ -102,7 +97,59 @@
     <script src="{{ asset('/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('/js/plugins-init/datatables.init.js') }}"></script>
 
+        <!-- Toastr -->
+        <script src="{{ asset('/vendor/toastr/js/toastr.min.js') }}"></script>
+
+        <!-- All init script -->
+        <script src="{{ asset('/js/plugins-init/toastr-init.js') }}"></script>
+
     @stack('script')
+
+    <script>
+        var isMessage = {{ Session::has('error') ? 1 : 0 }};
+        if(isMessage){
+            toastr.error('{{ session('error') }}',{
+                timeOut: 5000,
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut",
+                "tapToDismiss": false
+            });
+        }
+
+        var isSuccess = {{ Session::has('success') ? 1 : 0 }};
+        if(isSuccess){
+            toastr.success('{{ session('success') }}',{
+                timeOut: 5000,
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut",
+                "tapToDismiss": false
+            });
+        }
+    </script>
 </body>
 
 </html>

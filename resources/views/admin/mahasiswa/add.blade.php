@@ -21,22 +21,16 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Tambah Mahasiswa</h4>
-                    @session('success')
-                        <span class="alert alert-success">Data mahasiswa berhasil ditambah</span>
-                    @endsession
-
-                    @session('error')
-                        <span class="alert alert-danger">Oops, Something was wrong!</span>
-                    @endsession
                 </div>
                 <div class="card-body">
                     <div class="basic-form">
                         <form action="{{ route('admin.mahasiswa.store') }}" method="post">
                             @csrf
                             <div class="form-row">
+                                <input type="hidden" name="role_id" value="1">
                                 <div class="form-group col-md-6">
                                     <label>Nama</label>
-                                    <input name="nama" type="text" class="form-control" placeholder="Siti Khasanah">
+                                    <input name="name" type="text" class="form-control" placeholder="Siti Khasanah">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Nim</label>
@@ -44,13 +38,36 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Prodi</label>
-                                    <input name="prodi" type="text" class="form-control" placeholder="Informatika">
+                                    <input name="study_program" type="text" class="form-control" placeholder="Informatika">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label>Fakultas</label>
-                                    <input name="fakultas" type="text" class="form-control" placeholder="Fakultas Teknik">
+                                    <label>Jurusan</label>
+                                    <input name="major" type="text" class="form-control" placeholder="Fakultas Teknik">
                                 </div>
-                            </div>
+                                <div class="form-group col-md-6">
+                                    <label>Kelas</label>
+                                    <input name="class" type="text" class="form-control" placeholder="Informatika">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>email</label>
+                                    <input name="email" type="text" class="form-control" placeholder="email">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Phone</label>
+                                    <input name="phone" type="text" class="form-control" placeholder="Informatika">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>jenis kelamin</label>
+                                    <select name="gender" class="form-control">
+                                        <option value="">Choose your gender</option>
+                                        <option value="Laki-laki">Laki Laki</option>
+                                        <option value="Perempuan">Perempuan</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>password</label>
+                                    <input name="password" type="text" class="form-control" placeholder="Informatika">
+                                </div>                            </div>
                             <button type="submit" class="btn btn-primary">Tambah</button>
                         </form>
                     </div>
