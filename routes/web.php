@@ -62,7 +62,10 @@ Route::middleware(['auth','role:admin'])->group(function () {
         Route::prefix('/kriteria')->group(function(){
             Route::get('/', [KriteriaController::class, 'index'])->name('admin.kriteria.index');
             Route::get('/add', [KriteriaController::class, 'add'])->name('admin.kriteria.add');
-            Route::get('/edit', [KriteriaController::class, 'edit'])->name('admin.kriteria.edit');
+            Route::get('/edit/{id}', [KriteriaController::class, 'edit'])->name('admin.kriteria.edit');
+            Route::post('/store', [KriteriaController::class, 'store'])->name('admin.kriteria.store');
+            Route::post('/update', [KriteriaController::class, 'update'])->name('admin.kriteria.update');
+            Route::get('/{id}', [KriteriaController::class, 'destroy'])->name('admin.kriteria.destroy');
         });
         Route::prefix('/profile')->group(function(){
             Route::get('/', [ProfileController::class, 'index'])->name('admin.profile.index');

@@ -18,7 +18,47 @@
     </div>
     <div class="row">
         <div class="col-12">
-         
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Tambah Kriteria</h4>
+                </div>
+                <div class="card-body">
+                    <div class="basic-form">
+                        <form action="{{ route('admin.kriteria.store') }}" method="post">
+                            @csrf
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label>Code</label>
+                                    <input name="code" type="text" class="form-control"
+                                        placeholder="code">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label>Kriteria</label>
+                                    <input name="name" type="text" class="form-control"
+                                        placeholder="kriteria">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label>Type</label>
+                                    <input name="type" type="text" class="form-control"
+                                        placeholder="cost">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label>Bobot</label>
+                                    <input name="value" type="number" class="form-control"
+                                        placeholder="2">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Tambah</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
