@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -13,7 +13,7 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('admin.profile.index',[
+        return view('mahasiswa.profile.index',[
             'user' => $user
         ]);
     }
@@ -21,7 +21,7 @@ class ProfileController extends Controller
     public function edit()
     {
         $user = Auth::user();
-        return view('admin.profile.edit',[
+        return view('mahasiswa.profile.edit',[
             'user' => $user
         ]);
     }
@@ -30,21 +30,25 @@ class ProfileController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'address' => 'required',
+            'nim' => 'required|unique:users,nim,'.Auth::user()->id,
+            'major' => 'required',
+            'study_program' => 'required',
+            'class' => 'required',
             'email' => 'email|required|unique:users,email,'.Auth::user()->id,
             'phone' => 'numeric|required|unique:users,phone,'.Auth::user()->id,
+            'gender' => 'required',
         ]);
 
         if ($validated) {
             $user = User::find(Auth::user()->id);
             $user->update($validated);
-            return to_route('admin.profile.index')->with('success','Profile berhasil diupdate');
+            return to_route('mahasiswa.profile.index')->with('success','Profile berhasil diupdate');
         }
     }
 
     public function changePassword()
     {
-        return view('admin.profile.change-password');
+        return view('mahasiswa.profile.change-password');
     }
 
     public function updatePassword(Request $request)
@@ -63,7 +67,7 @@ class ProfileController extends Controller
                         'password' => Hash::make($request->new_password)
                     ]);
 
-                    return to_route('admin.dashboard')->with('success','Password berhasil diubah');
+                    return to_route('mahasiswa.dashboard')->with('success','Password berhasil diubah');
                 }
                 return back()->with('error','Password baru anda tidak cocok');
             }

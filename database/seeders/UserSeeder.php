@@ -27,7 +27,6 @@ class UserSeeder extends Seeder
                 'name' => 'Mahasiswa',
                 'email' => 'mahasiswa@mail.com',
                 'password' => '111111',
-                'address' => 'Malang',
                 'phone' => '081123456789',
                 'nim' => '1',
                 'major' => 'Teknologi Informasi',

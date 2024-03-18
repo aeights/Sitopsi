@@ -71,7 +71,7 @@
                 </a>
             </li>
             <li>
-                <a class="has-arrows" href="#">
+                <a class="has-arrows" href="{{ route('mahasiswa.profile.index') }}">
                     <i class="icon icon-app-store"></i>
                     <span class="nav-text">Profile</span>
                 </a>
