@@ -35,23 +35,47 @@
                             @csrf
                             <div class="form-row">
                                 <input type="hidden" name="id" value="{{ $student->id }}">
+                                <input type="hidden" name="role_id" value="1">
                                 <div class="form-group col-md-6">
                                     <label>Nama</label>
-                                    <input name="nama" type="text" value="{{ $student->nama }}" class="form-control" placeholder="Siti Khasanah">
+                                    <input name="name" value="{{ $student->name }}" type="text" class="form-control" placeholder="Siti Khasanah">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Nim</label>
-                                    <input name="nim" type="text" value="{{ $student->nim }}" class="form-control" placeholder="2023445888">
+                                    <input name="nim" value="{{ $student->nim }}" type="text" class="form-control" placeholder="2023445888">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Prodi</label>
-                                    <input name="prodi" type="text" value="{{ $student->prodi }}" class="form-control" placeholder="Informatika">
+                                    <input name="study_program" value="{{ $student->study_program }}" type="text" class="form-control" placeholder="Informatika">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label>Fakultas</label>
-                                    <input name="fakultas" type="text" value="{{ $student->fakultas }}" class="form-control" placeholder="Fakultas Teknik">
+                                    <label>Jurusan</label>
+                                    <input name="major" value="{{ $student->major }}" type="text" class="form-control" placeholder="Fakultas Teknik">
                                 </div>
-                            </div>
+                                <div class="form-group col-md-6">
+                                    <label>Kelas</label>
+                                    <input name="class" value="{{ $student->class }}" type="text" class="form-control" placeholder="Informatika">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>email</label>
+                                    <input name="email" value="{{ $student->email }}" type="text" class="form-control" placeholder="email">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Phone</label>
+                                    <input name="phone" value="{{ $student->phone }}" type="text" class="form-control" placeholder="Informatika">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>jenis kelamin</label>
+                                    <select name="gender" class="form-control">
+                                        <option value="">Choose your gender</option>
+                                        <option value="Laki-laki" {{ $student->gender == 'Laki-laki' ? 'selected' : '' }}>Laki Laki</option>
+                                        <option value="Perempuan" {{ $student->gender == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>password</label>
+                                    <input name="password" type="password" disabled class="form-control" placeholder="*******">
+                                </div>                            </div>
                             <button type="submit" class="btn btn-primary">Edit</button>
                         </form>
                     </div>

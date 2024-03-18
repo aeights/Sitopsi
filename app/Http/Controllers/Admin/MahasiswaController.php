@@ -24,7 +24,7 @@ class MahasiswaController extends Controller
     public function edit($id)
     {
         try{
-            $student = Mahasiswa::findOrFail($id);
+            $student = User::findOrFail($id);
             return view('admin.mahasiswa.edit',['student' => $student]);
         } catch (\Throwable $th) {
             return back()->with('error', 'Opps, Something was wrong!');
@@ -47,7 +47,7 @@ class MahasiswaController extends Controller
         ]);
         try {
             User::create($request->all());
-            return back()->with('success', 'Berhasil ditambah');
+            return to_route('admin.mahasiswa.index')->with('success', 'Berhasil ditambah');
         } catch (\Throwable $th) {
             dd($th);
             return back()->with('error', 'Opps, Something was wrong!');
@@ -56,32 +56,30 @@ class MahasiswaController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'role_id' => 'required',
+            'name' => 'required',
+            'nim' => 'required',
+            'study_program' => 'required',
+            // 'password' => 'required',
+            'phone' => 'required',
+            'class' => 'required',
+            'gender' => 'required',
+            'email' => 'required',
+        ]);
         try {
-            $request->validate([
-                'nama' => 'required',
-                'nim' => 'required',
-                'prodi' => 'required',
-                'fakultas' => 'required',
-            ]);
     
-            Mahasiswa::where('id',$request->id,)->update([
-                'nama' => $request->nama,
-                'nim' => $request->nim,
-                'prodi' => $request->prodi,
-                'fakultas' => $request->fakultas,
-            ]);
-    
+            User::where('id',$request->id)->update($request->except('_token'));
             return back()->with('success', 'Berhasil dirubah');
         } catch (\Throwable $th) {
-            dd($th);
-            // return back()->with('error', 'Opps, Something was wrong!');
+            return back()->with('error', 'Opps, Something was wrong!');
         }
     }
 
     public function destroy($id){
         try{
 
-            $mahasiswa = Mahasiswa::findOrFail($id);
+            $mahasiswa = User::findOrFail($id);
             $mahasiswa->delete();
             return back()->with('success', 'Berhasil dihapus');
         } catch (\Throwable $th) {
