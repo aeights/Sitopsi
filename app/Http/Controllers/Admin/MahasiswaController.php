@@ -49,7 +49,6 @@ class MahasiswaController extends Controller
             User::create($request->all());
             return to_route('admin.mahasiswa.index')->with('success', 'Berhasil ditambah');
         } catch (\Throwable $th) {
-            dd($th);
             return back()->with('error', 'Opps, Something was wrong!');
         }
     }
