@@ -28,9 +28,16 @@
                                 @csrf
                                 <div class="form-row">
                                     <div class="form-group col">
+                                        <label>Kode</label>
+                                        <input name="code" type="text" class="form-control"
+                                        placeholder="Kode alternatif">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col">
                                         <label>Alternatif</label>
                                         <input name="alternatif" type="text" class="form-control"
-                                            placeholder="alternatif">
+                                        placeholder="Alternatif">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Tambah</button>

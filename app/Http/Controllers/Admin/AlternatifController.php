@@ -11,7 +11,7 @@ class AlternatifController extends Controller
 {
     public function index()
     {
-        $alternatif = DB::table('alternatifs')->select('id', 'alternatif')->get();
+        $alternatif = DB::table('alternatifs')->select('id', 'code', 'alternatif')->get();
         return view('admin.alternatif.index', ['alternatif' => $alternatif]);
     }
 
@@ -34,6 +34,7 @@ class AlternatifController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'code' => 'required',
             'alternatif' => 'required',
         ]);
         try {
@@ -48,10 +49,12 @@ class AlternatifController extends Controller
     public function update(Request $request)
     {
         $request->validate([
+            'code' => 'required',
             'alternatif' => 'required',
         ]);
         try {
             Alternatif::where('id',$request->id,)->update([
+                'code' => $request->code,
                 'alternatif' => $request->alternatif,
             ]);
     

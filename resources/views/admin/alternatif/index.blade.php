@@ -29,6 +29,7 @@
                                 <thead>
                                     <tr role="row">
                                         <th>No</th>
+                                        <th>Kode</th>
                                         <th>Alternatif</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -37,6 +38,7 @@
                                     @foreach ($alternatif as $index => $item)                                    
                                         <tr role="row">
                                             <td>{{ $index+1 }}</td>
+                                            <td>{{ $item->code }}</td>
                                             <td>{{ $item->alternatif }}</td>
                                             <td class="d-flex justify-content-center">
                                                 <a href="{{ route('admin.alternatif.edit', $item->id) }}" class="badge badge-warning mx-1">Edit</a>

@@ -29,9 +29,16 @@
                                 <input type="hidden" name="id" value="{{ $alternatif->id }}">
                                 <div class="form-row">
                                     <div class="form-group col">
+                                        <label>Kode</label>
+                                        <input name="code" type="text" class="form-control"
+                                            value="{{ $alternatif->code }}">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col">
                                         <label>Alternatif</label>
                                         <input name="alternatif" type="text" class="form-control"
-                                            placeholder="alternatif" value="{{ $alternatif->alternatif }}">
+                                            value="{{ $alternatif->alternatif }}">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
