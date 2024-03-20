@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\KriteriaController;
 use App\Http\Controllers\Admin\MahasiswaController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Mahasiswa\AlternatifController as MahasiswaAlternatifController;
 use App\Http\Controllers\Mahasiswa\ProfileController as MahasiswaProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -83,12 +84,17 @@ Route::middleware(['auth','role:mahasiswa'])->group(function () {
         Route::get('/', function(){
             return view('mahasiswa.index');
         })->name('mahasiswa.dashboard');
+
         Route::prefix('/profile')->group(function(){
             Route::get('/', [MahasiswaProfileController::class, 'index'])->name('mahasiswa.profile.index');
             Route::get('/edit', [MahasiswaProfileController::class, 'edit'])->name('mahasiswa.profile.edit');
             Route::post('/edit', [MahasiswaProfileController::class, 'update'])->name('mahasiswa.profile.update');
             Route::get('/change-password', [MahasiswaProfileController::class, 'changePassword'])->name('mahasiswa.change.password');
             Route::post('/change-password', [MahasiswaProfileController::class, 'updatePassword'])->name('mahasiswa.change.password');
+        });
+
+        Route::prefix('/alternatif')->group(function(){
+            Route::get('/', [MahasiswaAlternatifController::class, 'index'])->name('mahasiswa.alternatif.index');
         });
     });
 });
