@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\MahasiswaController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Mahasiswa\AlternatifController as MahasiswaAlternatifController;
+use App\Http\Controllers\Mahasiswa\KriteriaController as MahasiswaKriteriaController;
 use App\Http\Controllers\Mahasiswa\ProfileController as MahasiswaProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -95,6 +96,10 @@ Route::middleware(['auth','role:mahasiswa'])->group(function () {
 
         Route::prefix('/alternatif')->group(function(){
             Route::get('/', [MahasiswaAlternatifController::class, 'index'])->name('mahasiswa.alternatif.index');
+        });
+
+        Route::prefix('/kriteria')->group(function(){
+            Route::get('/', [MahasiswaKriteriaController::class, 'index'])->name('mahasiswa.kriteria.index');
         });
     });
 });
