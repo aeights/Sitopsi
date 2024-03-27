@@ -59,13 +59,13 @@
                 </a>
             </li>  
             <li>
-                <a class="has-arrows" href="#">
+                <a class="has-arrows" href="{{ route('mahasiswa.penilaian.index') }}">
                     <i class="icon icon-app-store"></i>
                     <span class="nav-text">Penilaian</span>
                 </a>
             </li>
             <li>
-                <a class="has-arrows" href="#">
+                <a class="has-arrows" href="{{ route('mahasiswa.penilaian.index') }}">
                     <i class="icon icon-app-store"></i>
                     <span class="nav-text">Riwayat Penilaian</span>
                 </a>
