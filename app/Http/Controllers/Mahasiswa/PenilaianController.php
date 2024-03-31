@@ -11,7 +11,7 @@ use Illuminate\View\View;
 class PenilaianController extends Controller
 {
     public function index() : View {
-        $kriterias = Kriteria::get();
+        $kriterias = Kriteria::with('sub_kriteria')->get();
         $alternatifs = Alternatif::get();
         return view('mahasiswa.penilaian.index', [
             "kriterias" => $kriterias,

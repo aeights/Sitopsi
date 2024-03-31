@@ -34,6 +34,8 @@
                                         @endforeach
                                     </tr>
                                 </thead>
+                                <tbody id="data-penilaian">
+                                </tbody>
                                 <tbody>
                                 </tbody>
                             </table>
@@ -54,11 +56,11 @@
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form>
+            <form>
+                <div class="modal-body">
                     <div class="form-group">
                         <label for="">Pilih topik</label>
-                        <select class="form-control">
+                        <select class="form-control" id="input-topik">
                             @foreach ($alternatifs as $item)
                                 <option value="{{ $item->code }}">{{$item->alternatif}}</option>
                             @endforeach
@@ -69,17 +71,51 @@
                         <div class="form-group row">
                             <label class="col-sm-5 col-form-label">{{ $item->name }}</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control">
+                                <select class="form-control" id="sub-kriteria-{{ $item->id }}">
+                                    @foreach ($item->sub_kriteria as $sub)
+                                        <option value="{{ $sub->id }}">{{$sub->keterangan}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     @endforeach
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="tambah-penilaian" data-dismiss="modal" class="btn btn-primary">Tambah</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+<script>
+    var addBtn = document.getElementById('tambah-penilaian');
+    var table = document.getElementById('data-penilaian');
+    var inputTopik = document.getElementById('input-topik');
+
+    var tableBody = '';
+
+    const getSelectedText = (el) => {
+        if (el.selectedIndex === -1) {
+            return null;
+        }
+        return el.options[el.selectedIndex].text;
+    }
+
+    addBtn.addEventListener('click', () => {
+        tableBody += '<tr>'
+        tableBody += `
+            <td>${inputTopik.value}</td>
+            <td>${getSelectedText(inputTopik)}</td>
+        `;
+        var optionPenilaian  = document.querySelectorAll('[id^="sub-kriteria-"]');
+        optionPenilaian.forEach(element => {
+            tableBody += `<td>${getSelectedText(element)}</td>`
+        });
+        tableBody += `</tr>`;
+        table.innerHTML = tableBody;
+    });
+
+</script>
 @endsection
