@@ -11,8 +11,7 @@ class KriteriaController extends Controller
 {
     public function index()
     {
-        dd(Kriteria::with('sub_kriteria')->get());
-        $kriterias = DB::table('kriterias')->select('*')->get();
+        $kriterias = Kriteria::with('sub_kriteria')->get();
         return view('mahasiswa.kriteria.index', ['kriterias' => $kriterias]);
     }
 }

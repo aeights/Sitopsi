@@ -51,6 +51,42 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Sub kriteria</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div id="example_wrapper" class="dataTables_wrapper">
+                            <table id="example" class="display dataTable" style="min-width: 845px" role="grid" aria-describedby="example_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting" rowspan="1" colspan="1">Kriteria</th>
+                                        <th class="sorting" rowspan="1" colspan="1">Sub Kriteria</th>
+                                        <th class="sorting" rowspan="1" colspan="1">Bobot</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($kriterias as $index => $item)                                    
+                                        <tr role="row">
+                                            <td rowspan="{{ count($item->sub_kriteria) + 1 }}">{{ $item->name }}</td>
+                                        </tr>
+                                        @foreach ($item->sub_kriteria as $sub)
+                                            <tr>
+                                                <td>{{ $sub->keterangan }}</td>
+                                                <td>{{ $sub->value }}</td>
+                                            </tr>
+                                        @endforeach
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
