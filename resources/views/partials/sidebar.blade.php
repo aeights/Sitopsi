@@ -65,7 +65,7 @@
                 </a>
             </li>
             <li>
-                <a class="has-arrows" href="{{ route('mahasiswa.penilaian.index') }}">
+                <a class="has-arrows" href="{{ route('mahasiswa.penilaian.history') }}">
                     <i class="icon icon-app-store"></i>
                     <span class="nav-text">Riwayat Penilaian</span>
                 </a>

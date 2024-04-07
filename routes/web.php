@@ -105,6 +105,9 @@ Route::middleware(['auth','role:mahasiswa'])->group(function () {
 
         Route::prefix('/penilaian')->group(function(){
             Route::get('/', [PenilaianController::class, 'index'])->name('mahasiswa.penilaian.index');
+            Route::get('/history', [PenilaianController::class, 'history'])->name('mahasiswa.penilaian.history');
+            Route::get('/history/{id}', [PenilaianController::class, 'detail_history'])->name('mahasiswa.penilaian.detail_history');
+            Route::post('/', [PenilaianController::class, 'store'])->name('mahasiswa.penilaian.store');
         });
     });
 });

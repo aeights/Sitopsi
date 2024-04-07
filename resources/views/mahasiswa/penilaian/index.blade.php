@@ -20,11 +20,12 @@
             <div class="card">
                 <div class="card-header">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Pilih Topik yang kamu bingungkan!</button>
+                    <button class="btn btn-success" id="simpan">Simpan</button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <div id="example_wrapper" class="dataTables_wrapper">
-                            <table id="example" class="display dataTable" style="min-width: 845px" role="grid" aria-describedby="example_info">
+                            <table id="example">
                                 <thead>
                                     <tr role="row">
                                         <th class="sorting" rowspan="1" colspan="1">Kode</th>
@@ -39,6 +40,8 @@
                                 <tbody>
                                 </tbody>
                             </table>
+
+                            
                         </div>
                     </div>
                 </div>
@@ -62,7 +65,7 @@
                         <label for="">Pilih topik</label>
                         <select class="form-control" id="input-topik">
                             @foreach ($alternatifs as $item)
-                                <option value="{{ $item->code }}">{{$item->alternatif}}</option>
+                                <option value="{{ $item->code }}" attrBobot="{{ $item->value }}">{{$item->alternatif}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -73,7 +76,7 @@
                             <div class="col-sm-7">
                                 <select class="form-control" id="sub-kriteria-{{ $item->id }}">
                                     @foreach ($item->sub_kriteria as $sub)
-                                        <option value="{{ $sub->id }}">{{$sub->keterangan}}</option>
+                                        <option value="{{ $sub->id }}" attrBobot="{{ $sub->value }}">{{$sub->keterangan}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -89,33 +92,72 @@
     </div>
 </div>
 
-<script>
-    var addBtn = document.getElementById('tambah-penilaian');
-    var table = document.getElementById('data-penilaian');
-    var inputTopik = document.getElementById('input-topik');
 
-    var tableBody = '';
+    @push('script')
+    <script>
+        var addBtn = document.getElementById('tambah-penilaian');
+        var saveBtn = document.getElementById('simpan');
+        var table = document.getElementById('data-penilaian');
+        var inputTopik = document.getElementById('input-topik');
 
-    const getSelectedText = (el) => {
-        if (el.selectedIndex === -1) {
-            return null;
+        var tableBody = '';
+        const data = [];
+
+        const getSelectedText = (el) => {
+            if (el.selectedIndex === -1) {
+                return null;
+            }
+            return el.options[el.selectedIndex].text;
         }
-        return el.options[el.selectedIndex].text;
-    }
 
-    addBtn.addEventListener('click', () => {
-        tableBody += '<tr>'
-        tableBody += `
-            <td>${inputTopik.value}</td>
-            <td>${getSelectedText(inputTopik)}</td>
-        `;
-        var optionPenilaian  = document.querySelectorAll('[id^="sub-kriteria-"]');
-        optionPenilaian.forEach(element => {
-            tableBody += `<td>${getSelectedText(element)}</td>`
+        const getSelectedBobot = (el) => {
+            if (el.selectedIndex === -1) {
+                return null;
+            }
+            let bobot = el.options[el.selectedIndex].getAttribute('attrBobot');
+            return bobot;
+        }
+
+        addBtn.addEventListener('click', () => {
+            if(!tableBody.includes(inputTopik.value)){
+                tableBody += '<tr>'
+                tableBody += `
+                    <td>${inputTopik.value}</td>
+                    <td>${getSelectedText(inputTopik)}</td>
+                `;
+                
+                let dc = [];
+                var optionPenilaian  = document.querySelectorAll('[id^="sub-kriteria-"]');
+                optionPenilaian.forEach(element => {
+                    tableBody += `<td>${getSelectedBobot(element)}</td>`
+                    dc.push(parseInt(getSelectedBobot(element)))
+                });
+                data.push({
+                    code: inputTopik.value,
+                    kriterias: dc,
+                })
+                tableBody += `</tr>`;
+                table.innerHTML = tableBody;
+            }
         });
-        tableBody += `</tr>`;
-        table.innerHTML = tableBody;
-    });
 
-</script>
+        saveBtn.addEventListener('click', () => {
+            $.ajax({
+                url: '{{ route("mahasiswa.penilaian.store") }}',
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    data: data,
+                },
+                success: function (value) {
+                    window.location.href = `/dashboard/mahasiswa/penilaian/history/${value}`
+                }
+            })
+        });
+
+
+
+    </script>
+    @endpush
+
 @endsection
