@@ -25,19 +25,20 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <div id="example_wrapper" class="dataTables_wrapper">
-                            <table id="example">
+                            <table class="display dataTable">
                                 <thead>
                                     <tr role="row">
-                                        <th class="sorting" rowspan="1" colspan="1">Kode</th>
-                                        <th class="sorting" rowspan="1" colspan="1">Alternatif</th>
+                                        <th>Kode</th>
+                                        <th>Alternatif</th>
                                         @foreach ($kriterias as $item)
-                                            <th class="sorting" rowspan="1" colspan="1">{{ $item->code }}</th>
+                                            <th>{{ $item->code }}</th>
                                         @endforeach
                                     </tr>
                                 </thead>
                                 <tbody id="data-penilaian">
-                                </tbody>
-                                <tbody>
+                                    <tr>
+                                        <td>Tidak ada data</td>
+                                    </tr>
                                 </tbody>
                             </table>
 
@@ -133,7 +134,7 @@
                     dc.push(parseInt(getSelectedBobot(element)))
                 });
                 data.push({
-                    code: inputTopik.value,
+                    code: getSelectedText(inputTopik),
                     kriterias: dc,
                 })
                 tableBody += `</tr>`;

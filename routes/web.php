@@ -9,6 +9,9 @@ use App\Http\Controllers\Mahasiswa\AlternatifController as MahasiswaAlternatifCo
 use App\Http\Controllers\Mahasiswa\KriteriaController as MahasiswaKriteriaController;
 use App\Http\Controllers\Mahasiswa\PenilaianController;
 use App\Http\Controllers\Mahasiswa\ProfileController as MahasiswaProfileController;
+use App\Models\Alternatif;
+use App\Models\Kriteria;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -45,7 +48,14 @@ Route::middleware('guest')->group(function () {
 Route::middleware(['auth','role:admin'])->group(function () {
     Route::prefix('/dashboard/admin')->group(function(){
         Route::get('/', function(){
-            return view('admin.index');
+            $alternatif = Alternatif::count();
+            $kriteria = Kriteria::count();
+            $mahasiswa = User::where('role_id', 1)->count();
+            return view('admin.index', [
+                'alternatif' => $alternatif,
+                'kriteria' => $kriteria,
+                'mahasiswa' => $mahasiswa,
+            ]);
         })->name('admin.dashboard');
         Route::prefix('/mahasiswa')->group(function(){
             Route::get('/', [MahasiswaController::class, 'index'])->name('admin.mahasiswa.index');
@@ -84,7 +94,14 @@ Route::middleware(['auth','role:admin'])->group(function () {
 Route::middleware(['auth','role:mahasiswa'])->group(function () {
     Route::prefix('/dashboard/mahasiswa')->group(function(){
         Route::get('/', function(){
-            return view('mahasiswa.index');
+            $alternatif = Alternatif::count();
+            $kriteria = Kriteria::count();
+            $mahasiswa = User::where('role_id', 1)->count();
+            return view('mahasiswa.index', [
+                'alternatif' => $alternatif,
+                'kriteria' => $kriteria,
+                'mahasiswa' => $mahasiswa,
+            ]);
         })->name('mahasiswa.dashboard');
 
         Route::prefix('/profile')->group(function(){

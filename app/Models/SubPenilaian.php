@@ -10,4 +10,9 @@ class SubPenilaian extends Model
     use HasFactory;
 
     protected $guarded  = ['id'];
+
+    public function KriPenilaian()
+    {
+        return $this->hasMany(KriPenilaian::class, 'sub_penilaian_id');
+    }
 }

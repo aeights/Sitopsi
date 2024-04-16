@@ -22,7 +22,7 @@
                 <div class="stat-widget-two card-body bg-danger">
                     <div class="stat-content">
                         <div class="stat-text text-white">Alternatif</div>
-                        <div class="stat-digit text-white">8500</div>
+                        <div class="stat-digit text-white">{{ $alternatif }}</div>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 <div class="stat-widget-two card-body bg-primary">
                     <div class="stat-content">
                         <div class="stat-text text-white">Kriteria</div>
-                        <div class="stat-digit text-white">7800</div>
+                        <div class="stat-digit text-white">{{ $kriteria }}</div>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                 <div class="stat-widget-two card-body bg-warning">
                     <div class="stat-content">
                         <div class="stat-text text-white">Mahasiswa</div>
-                        <div class="stat-digit text-white">500</div>
+                        <div class="stat-digit text-white">{{ $mahasiswa }}</div>
                     </div>
                 </div>
             </div>

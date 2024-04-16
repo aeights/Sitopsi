@@ -20,32 +20,32 @@ class KriteriaSeeder extends Seeder
                 'code' => 'C1', 'name' => 'Nilai akademik', 'type' => 'Benefit', 'value' => 5, 'sub_categorie' => [
                     [
                         'name' => 'A (Sangat Baik)',
-                        'value' => 4
+                        'value' => 5
                     ],
                     [
                         'name' => 'B+ (Lebih dari Baik)',
-                        'value' => 3.5
+                        'value' => 5.5
                     ],
                     [
                         'name' => 'B (Baik)',
-                        'value' => 3
+                        'value' => 4
                     ],
                     [
                         'name' => 'C+ (Lebih dari Cukup)',
-                        'value' => 2.5
+                        'value' => 4.5
                     ],
                     [
                         'name' => 'C (Cukup)',
-                        'value' => 2
+                        'value' => 3
                     ],
                     [
                         'name' => 'D (Kurang)',
-                        'value' => 1
+                        'value' => 2
                     ],
 
                     [
                         'name' => 'E (Gagal)',
-                        'value' => 0
+                        'value' => 1
                     ],
                 ],
             ],
@@ -53,19 +53,19 @@ class KriteriaSeeder extends Seeder
                 'code' => 'C2', 'name' => 'History project', 'type' => 'Benefit', 'value' => 3,  'sub_categorie' => [
                     [
                         'name' => '≥ 7',
-                        'value' => 3
+                        'value' => 4
                     ],
                     [
                         'name' => '4 ≥  ≤ 6',
-                        'value' => 2
+                        'value' => 3
                     ],
                     [
                         'name' => '1 ≥  ≤ 3',
-                        'value' => 1
+                        'value' => 2
                     ],
                     [
                         'name' => 'Tidak ada',
-                        'value' => 0
+                        'value' => 1
                     ],
                 ],
             ],
@@ -73,11 +73,11 @@ class KriteriaSeeder extends Seeder
                 'code' => 'C3', 'name' => 'Pelatihan', 'type' => 'Benefit', 'value' => 4,  'sub_categorie' => [
                     [
                         'name' => 'Pernah mengikuti',
-                        'value' => 1
+                        'value' => 2
                     ],
                     [
                         'name' => 'Tidak pernah mengikuti',
-                        'value' => 0
+                        'value' => 1
                     ],
                 ],
             ],
@@ -85,45 +85,45 @@ class KriteriaSeeder extends Seeder
                 'code' => 'C4', 'name' => 'Prestasi Non Akademik', 'type' => 'Benefit', 'value' => 3,  'sub_categorie' => [
                     [
                         'name' => 'Internasional',
-                        'value' => 3
+                        'value' => 4
                     ],
                     [
                         'name' => 'Nasional',
-                        'value' => 2
+                        'value' => 3
                     ],
                     [
                         'name' => 'Regional',
-                        'value' => 1
+                        'value' => 2
                     ],
                     [
                         'name' => 'Tidak ada',
-                        'value' => 0
+                        'value' => 1
                     ]
                 ],
             ],
             ['code' => 'C5', 'name' => 'Minat', 'type' => 'Benefit', 'value' => 5,  'sub_categorie' => [
                 [
                     'name' => 'Sangat Minat	',
-                    'value' => 3
+                    'value' => 4
                 ],
                 [
                     'name' => 'Minat',
-                    'value' => 2
+                    'value' => 3
                 ],
                 [
                     'name' => 'Kurang minat	',
-                    'value' => 1
+                    'value' => 2
                 ],
                 [
                     'name' => 'Tidak minat',
-                    'value' => 0
+                    'value' => 1
                 ]
             ],],
             [
                 'code' => 'C6', 'name' => 'Biaya Infrastruktur', 'type' => 'Cost', 'value' => 2,  'sub_categorie' => [
                     [
                         'name' => '> 2.000.000	',
-                        'value' => 0
+                        'value' => 1
                     ],
                     [
                         'name' => '1.000.000 ≥  ≤ 2.000.000',
