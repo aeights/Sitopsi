@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kriteria;
+use App\Models\SubKriteria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +12,7 @@ class KriteriaController extends Controller
 {
     public function index()
     {
-        $kriterias = DB::table('kriterias')->select('*')->get();
+        $kriterias = Kriteria::with('sub_kriteria')->get();
         return view('admin.kriteria.index', ['kriterias' => $kriterias]);
     }
     public function add()
@@ -60,13 +61,30 @@ class KriteriaController extends Controller
         }
     }
 
+    public function storesubkriteria(Request $request)
+    {
+        $request->validate([
+            'kriterias_id' => 'required',
+            'keterangan' => 'required',
+            'value' => 'required',
+        ]);
+        try {
+            SubKriteria::create($request->all());
+            return back()->with('success', 'Berhasil menambah sub kriteria');
+        } catch (\Throwable $th) {
+            dd($th);
+            return back()->with('error', 'Oops, Something was wrong!');
+        }
+    }
+
     public function destroy($id) {
         try {
             $kriteria = Kriteria::findOrFail($id);
             $kriteria->delete();
             return to_route('admin.kriteria.index')->with('success', 'Berhasil dihapus');
         } catch (\Throwable $th) {
-            return back()->with('error', 'Oops, Something was wrong!');
+            dd($th);
+            return back()->with('error', 'Oops, Something was wrongs!');
         }
     }
 }

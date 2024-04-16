@@ -23,9 +23,14 @@
                     <a href="{{ route('admin.mahasiswa.add') }}" class="btn btn-primary">Tambah</a>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <div id="example_wrapper" class="dataTables_wrapper">
-                            <table id="example" class="display dataTable" style="min-width: 845px" role="grid" aria-describedby="example_info">
+                    <div id="example_wrapper" class="dataTables_wrapper">
+                        <select name="form-control" id="filterDropdown" onchange="filterProdi()">
+                            <option value="ALL">Semua</option>
+                            <option value="Teknik Informatika">Teknik Informatika</option>
+                            <option value="Sistem Informasi">Sistem Informasi</option>
+                        </select>
+                        <div class="table-responsive" style="margin-top: 20px">
+                            <table id="example" class="dataTable">
                                 <thead>
                                     <tr role="row">
                                         <th class="sorting" rowspan="1" colspan="1">No</th>
@@ -62,3 +67,27 @@
     </div>
 </div>
 @endsection
+
+@push('script')
+<script>
+    function filterProdi(){
+        var dropdown, filter, table, tr, td, i, txtValue;
+        dropdown = document.getElementById("filterDropdown");
+        filter = dropdown.value.toUpperCase();
+        table = document.getElementById("example");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[4]; // Mencari dalam kolom ketiga (kota), bisa disesuaikan
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (filter === "ALL" || txtValue.toUpperCase() === filter) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }       
+        }
+    }
+</script>
+@endpush

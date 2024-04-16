@@ -96,6 +96,12 @@ class PenilaianController extends Controller
         $x = 0;
         $ranking = $this->rangking_agregasi($agregasi);
 
+        $penilaian= Penilaian::find($id);
+        if(!$penilaian->alternatif){
+            $penilaian->alternatif = $ranking[0][0];
+            $penilaian->save();
+        }
+
         return view('mahasiswa.penilaian.detail', [
             'matrix_normalisasi' => $matrix_normalisasi, 
             'matrix_normalisasi_w' => $matrix_normalisasi_w,

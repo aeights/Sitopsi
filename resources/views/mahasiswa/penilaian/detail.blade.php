@@ -263,10 +263,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for ($i = 0; $i < count($agregasi); $i++)                          
+                                    @for ($i = 0; $i < count($ranking); $i++)                          
                                     <tr>
                                         <td>{{ $i+1 }}</td>
-                                        <td>{{ $agregasi[$i][0] }}</td>
+                                        <td>{{ $ranking[$i][0] }}</td>
                                     </tr>
                                     @endfor
                                 </tbody>

@@ -28,6 +28,7 @@
                                 <thead>
                                     <tr role="row">
                                         <th>No</th>
+                                        <th>Alternatif</th>
                                         <th>Tanggal Penilaian</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -36,6 +37,7 @@
                                     @foreach ($penilaian as $index => $item)                                    
                                         <tr role="row">
                                             <td>{{ $index+1 }}</td>
+                                            <td>{{ $item->alternatif }}</td>
                                             <td>{{ $item->created_at }}</td>
                                             <td>
                                                 <a href="{{ route('mahasiswa.penilaian.detail_history', $item->id) }}" class="btn btn-success">Detail</a>
