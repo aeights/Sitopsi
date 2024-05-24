@@ -27,12 +27,12 @@ class UserSeeder extends Seeder
                 'name' => 'Mahasiswa',
                 'email' => 'mahasiswa@mail.com',
                 'password' => '111111',
-                'phone' => '081123456789',
+                // 'phone' => '081123456789',
                 'nim' => '1',
                 'major' => 'Teknologi Informasi',
                 'study_program' => 'Teknik Informatika',
                 'class' => 'A',
-                'gender' => 'Laki-laki'
+                // 'gender' => 'Laki-laki'
             ]
         ];
 

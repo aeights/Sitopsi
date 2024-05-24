@@ -52,7 +52,7 @@
                                     <label>email</label>
                                     <input name="email" type="text" class="form-control" placeholder="email">
                                 </div>
-                                <div class="form-group col-md-6">
+                                {{-- <div class="form-group col-md-6">
                                     <label>Phone</label>
                                     <input name="phone" type="text" class="form-control" placeholder="Informatika">
                                 </div>
@@ -63,7 +63,7 @@
                                         <option value="Laki-laki">Laki Laki</option>
                                         <option value="Perempuan">Perempuan</option>
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="form-group col-md-12">
                                     <label>password</label>
                                     <input name="password" type="text" class="form-control" placeholder="Informatika">

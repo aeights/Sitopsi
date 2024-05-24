@@ -66,7 +66,7 @@ class KriteriaController extends Controller
         $request->validate([
             'kriterias_id' => 'required',
             'keterangan' => 'required',
-            'value' => 'required',
+            'value' => 'required|integer',
         ]);
         try {
             SubKriteria::create($request->all());
@@ -74,6 +74,39 @@ class KriteriaController extends Controller
         } catch (\Throwable $th) {
             dd($th);
             return back()->with('error', 'Oops, Something was wrong!');
+        }
+    }
+
+    public function updateSubKriteria(Request $request)
+    {
+        $request->validate([
+            'sub_id' => 'required',
+            'kriterias_id' => 'required',
+            'keterangan' => 'required',
+            'value' => 'required|integer',
+        ]);
+        try {
+            SubKriteria::find($request->sub_id)->update([
+                'kriterias_id' => $request->kriterias_id,
+                'keterangan' => $request->keterangan,
+                'value' => $request->value
+            ]);
+            return back()->with('success', 'Berhasil diupdate');
+        } catch (\Throwable $th) {
+            dd($th);
+            return back()->with('error', 'Oops, Something was wrong!');
+        }
+    }
+
+    public function deleteSubKriteria($id)
+    {
+        try {
+            $subKriteria = SubKriteria::findOrFail($id);
+            $subKriteria->delete();
+            return to_route('admin.kriteria.index')->with('success', 'Berhasil dihapus');
+        } catch (\Throwable $th) {
+            dd($th);
+            return back()->with('error', 'Oops, Something was wrongs!');
         }
     }
 

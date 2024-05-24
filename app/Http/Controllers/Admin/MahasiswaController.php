@@ -40,9 +40,9 @@ class MahasiswaController extends Controller
             'nim' => 'required',
             'study_program' => 'required',
             'password' => 'required',
-            'phone' => 'required',
+            // 'phone' => 'required',
             'class' => 'required',
-            'gender' => 'required',
+            // 'gender' => 'required',
             'email' => 'required',
         ]);
         try {
@@ -61,9 +61,9 @@ class MahasiswaController extends Controller
             'nim' => 'required',
             'study_program' => 'required',
             // 'password' => 'required',
-            'phone' => 'required',
+            // 'phone' => 'required',
             'class' => 'required',
-            'gender' => 'required',
+            // 'gender' => 'required',
             'email' => 'required',
         ]);
         try {

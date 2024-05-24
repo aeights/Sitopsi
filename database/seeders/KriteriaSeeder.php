@@ -20,19 +20,19 @@ class KriteriaSeeder extends Seeder
                 'code' => 'C1', 'name' => 'Nilai akademik', 'type' => 'Benefit', 'value' => 5, 'sub_categorie' => [
                     [
                         'name' => 'A (Sangat Baik)',
-                        'value' => 5
+                        'value' => 7
                     ],
                     [
                         'name' => 'B+ (Lebih dari Baik)',
-                        'value' => 5.5
+                        'value' => 6
                     ],
                     [
                         'name' => 'B (Baik)',
-                        'value' => 4
+                        'value' => 5
                     ],
                     [
                         'name' => 'C+ (Lebih dari Cukup)',
-                        'value' => 4.5
+                        'value' => 4
                     ],
                     [
                         'name' => 'C (Cukup)',

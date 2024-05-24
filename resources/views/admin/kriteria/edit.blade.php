@@ -51,8 +51,11 @@
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label>Bobot</label>
-                                    <input name="value" type="number" class="form-control"
-                                        placeholder="2" value="{{ $kriteria->value }}">
+                                    <select name="value" class="form-control">
+                                        @for ($i = 1; $i <= 10; $i++)
+                                            <option value="{{$i}}" @selected($i == $kriteria->value)>{{$i}}</option>
+                                        @endfor
+                                    </select>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">edit</button>

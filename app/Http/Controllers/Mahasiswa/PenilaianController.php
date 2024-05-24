@@ -8,6 +8,7 @@ use App\Models\KriPenilaian;
 use App\Models\Kriteria;
 use App\Models\Penilaian;
 use App\Models\SubPenilaian;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -29,6 +30,74 @@ class PenilaianController extends Controller
         return view('mahasiswa.penilaian.history', [
             'penilaian' => $penilaian,
         ]);
+    }
+
+    public function generate_pdf($id){
+        $penilaian = SubPenilaian::with('KriPenilaian')->where('penilaian_id', $id)->get();
+        $kriterias = Kriteria::select('value')->get();
+        $bobot = [];
+        // bobot
+       foreach($kriterias as $kriteria){
+            array_push($bobot, $kriteria->value);
+        }
+
+        $matrix = [];
+        foreach($penilaian as $p){
+            $temp = [];
+            foreach($p->KriPenilaian as $kri){
+                array_push($temp, $kri->bobot);
+            }
+            array_push($matrix, $temp);
+        }
+        
+        $matrix_normalisasi = $this->normalisasi($matrix);
+        $matrix_normalisasi_w = $this->normalisasi_w($matrix_normalisasi, $bobot);
+        // matrix normalisasi dengan bobot
+
+        $alternatif = count($matrix);
+        $concordance_matrix = array();
+        $discordance_matrix = array();
+
+        for ($k=0; $k < $alternatif; $k++) { 
+            $temp_conc = [];
+            $temp_disc = [];
+            for ($l=0; $l < $alternatif; $l++) { 
+                if($k != $l){
+                    $barisn = $matrix_normalisasi_w[$k];
+                    $barism = $matrix_normalisasi_w[$l];
+                    $conc = $this->concordance_sum($barisn, $barism, $matrix_normalisasi_w, $bobot);
+                    $disc = $this->disconcordance_sum($barisn, $barism, $matrix_normalisasi_w);
+                    array_push($temp_disc, $disc);
+                    array_push($temp_conc, $conc);
+                }else{
+                    array_push($temp_conc, 0);
+                    array_push($temp_disc, 0);
+                }
+            }
+            array_push($concordance_matrix, $temp_conc);
+            array_push($discordance_matrix, $temp_disc);
+        }
+        $threshold_con = $this->threshold($concordance_matrix, $alternatif);
+        $threshold_dis = $this->threshold($discordance_matrix, $alternatif);
+        $concordance_dominan = $this->dominan($concordance_matrix, $threshold_con);
+        $discordance_dominan = $this->dominan($discordance_matrix, $threshold_dis);
+        $agregasi = $this->agregasi($concordance_dominan, $discordance_dominan);
+
+        $x = 0;
+        foreach($penilaian as $p) { 
+            array_unshift($agregasi[$x], $p->alternatif);
+            array_unshift($concordance_dominan[$x], $p->alternatif);
+            array_unshift($discordance_dominan[$x], $p->alternatif);
+            array_unshift($matrix_normalisasi[$x], $p->alternatif);
+            array_unshift($matrix_normalisasi_w[$x], $p->alternatif);
+            array_unshift($matrix[$x], $p->alternatif);
+            $x++;
+        }
+        $x = 0;
+        $ranking = $this->rangking_agregasi($agregasi);
+
+        $pdf = PDF::loadView('mahasiswa.penilaian.pdf', ['rangking' => $ranking]);
+        return $pdf->stream('file.pdf');
     }
 
     public function detail_history($id) {
@@ -95,6 +164,7 @@ class PenilaianController extends Controller
         }
         $x = 0;
         $ranking = $this->rangking_agregasi($agregasi);
+        // dd($ranking);
 
         $penilaian= Penilaian::find($id);
         if(!$penilaian->alternatif){
@@ -110,6 +180,7 @@ class PenilaianController extends Controller
             'discordance_matrix' => $discordance_dominan,
             'agregasi' => $agregasi,
             'ranking' => $ranking,
+            'id' => $id,
         ]);
     }
 

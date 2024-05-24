@@ -22,7 +22,7 @@
                 <div class="card-header">
                     <h4 class="card-title">Edit Mahasiswa</h4>
                     @session('success')
-                        <span class="alert alert-success">Data mahasiswa berhasil ditambah</span>
+                        <span class="alert alert-success">{{ session('success') }}</span>
                     @endsession
 
                     @session('error')
@@ -60,7 +60,7 @@
                                     <label>email</label>
                                     <input name="email" value="{{ $student->email }}" type="text" class="form-control" placeholder="email">
                                 </div>
-                                <div class="form-group col-md-6">
+                                {{-- <div class="form-group col-md-6">
                                     <label>Phone</label>
                                     <input name="phone" value="{{ $student->phone }}" type="text" class="form-control" placeholder="Informatika">
                                 </div>
@@ -71,7 +71,7 @@
                                         <option value="Laki-laki" {{ $student->gender == 'Laki-laki' ? 'selected' : '' }}>Laki Laki</option>
                                         <option value="Perempuan" {{ $student->gender == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="form-group col-md-12">
                                     <label>password</label>
                                     <input name="password" type="password" disabled class="form-control" placeholder="*******">

@@ -64,7 +64,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Sub kriteria</h4>
-                    <bbutton class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Tambah Sub Kriteria</bbutton>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Tambah Sub Kriteria</button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -75,6 +75,7 @@
                                         <th class="sorting" rowspan="1" colspan="1">Kriteria</th>
                                         <th class="sorting" rowspan="1" colspan="1">Sub Kriteria</th>
                                         <th class="sorting" rowspan="1" colspan="1">Bobot</th>
+                                        <th class="sorting" rowspan="1" colspan="1">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -86,6 +87,10 @@
                                             <tr>
                                                 <td>{{ $sub->keterangan }}</td>
                                                 <td>{{ $sub->value }}</td>
+                                                <td>
+                                                    <button class="badge badge-warning border-0" data-toggle="modal" data-target="#modalEditSub" data-id="{{ $sub->id }}" data-keterangan="{{ $sub->keterangan }}" data-value="{{ $sub->value }}" onclick="fillModalEdit(this)">Edit</button>
+                                                    <a href="{{ route('admin.sub-kriteria.destroy', $sub->id) }}" class="badge badge-danger">Delete</a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     @endforeach
@@ -100,7 +105,7 @@
 </div>
 
 
-<!-- Modal -->
+<!-- Modal Add -->
 <div class="modal fade" id="exampleModalCenter">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -128,7 +133,7 @@
 
                     <div class="form-group">
                         <label for="">Bobot Sub Kriteria</label>
-                        <input type="number" class="form-control" name="value">
+                        <input id="bobotSubKriteria" type="number" class="form-control" name="value">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -140,4 +145,80 @@
     </div>
 </div>
 
+<!-- Modal Edit -->
+<div class="modal fade" id="modalEditSub">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Sub Kriteria</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="{{ route('admin.sub-kriteria.update') }}">
+                @csrf
+                <div class="modal-body">
+                    <input id="subId" type="hidden" name="sub_id">
+                    <div class="form-group">
+                        <label for="">Pilih Kriteria</label>
+                        <select class="form-control" id="input-topik" name="kriterias_id">
+                            @foreach ($kriterias as $item)
+                                <option value="{{ $item->id }}" attrBobot="{{ $item->id }}">{{$item->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Sub Kriteria</label>
+                        <input id="inputKeteranganEdit" type="text" class="form-control" name="keterangan">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Bobot Sub Kriteria</label>
+                        <input id="inputBobotEdit" id="bobotSubKriteria" type="number" class="form-control" name="value">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
+@push('script')
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var input = document.getElementById('bobotSubKriteria');
+            input.addEventListener('input', function() {
+                var value = this.value;
+                // Hapus semua titik dari nilai
+                this.value = value.replace('.', '');
+            });
+        });
+    </script> --}}
+    <script>
+        $(document).ready(function() {
+            $('#bobotSubKriteria').on('keydown', function(e) {
+                // Cegah input karakter titik (.)
+                if (e.key === '.') {
+                    e.preventDefault();
+                }
+            });
+            $('#inputBobotEdit').on('keydown', function(e) {
+                // Cegah input karakter titik (.)
+                if (e.key === '.') {
+                    e.preventDefault();
+                }
+            });
+        });
+        function fillModalEdit(params) {
+            var id = $(params).data('id');
+            var keterangan = $(params).data('keterangan');
+            var value = $(params).data('value');
+            $('#subId').val(id);
+            $('#inputKeteranganEdit').val(keterangan);
+            $('#inputBobotEdit').val(value);
+        }
+    </script>
+@endpush

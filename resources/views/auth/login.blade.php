@@ -62,7 +62,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <a href="page-forgot-password.html">Login Email Polinema</a>
+                                            <a href="#">Lupa Password</a>
                                         </div>
                                     </div>
                                 </form>

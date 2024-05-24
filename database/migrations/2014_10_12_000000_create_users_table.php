@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('address')->nullable();              // Admin field
-            $table->string('phone')->unique();
+            $table->string('phone')->unique()->nullable();
             $table->string('nim')->unique()->nullable();
             $table->string('major')->nullable();
             $table->string('study_program')->nullable();

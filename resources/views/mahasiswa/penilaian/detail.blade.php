@@ -20,6 +20,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Nilai Matrix Keputusan</h4>
+                    <a href="{{ route('mahasiswa.penilaian.generate_pdf', $id) }}" class="btn btn-danger">Cetak</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

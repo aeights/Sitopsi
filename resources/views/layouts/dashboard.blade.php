@@ -93,15 +93,15 @@
 
     <script src="{{ asset('/js/dashboard/dashboard-1.js') }}"></script>
 
-       <!-- Datatable -->
+    <!-- Datatable -->
     <script src="{{ asset('/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('/js/plugins-init/datatables.init.js') }}"></script>
 
-        <!-- Toastr -->
-        <script src="{{ asset('/vendor/toastr/js/toastr.min.js') }}"></script>
+    <!-- Toastr -->
+    <script src="{{ asset('/vendor/toastr/js/toastr.min.js') }}"></script>
 
-        <!-- All init script -->
-        <script src="{{ asset('/js/plugins-init/toastr-init.js') }}"></script>
+    <!-- All init script -->
+    <script src="{{ asset('/js/plugins-init/toastr-init.js') }}"></script>
 
     @stack('script')
 

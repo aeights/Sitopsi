@@ -81,6 +81,9 @@ Route::middleware(['auth','role:admin'])->group(function () {
             Route::post('/storesubkriteria', [KriteriaController::class, 'storesubkriteria'])->name('admin.kriteria.store_sub');
             Route::post('/update', [KriteriaController::class, 'update'])->name('admin.kriteria.update');
             Route::get('/{id}', [KriteriaController::class, 'destroy'])->name('admin.kriteria.destroy');
+
+            Route::post('/sub/update', [KriteriaController::class, 'updateSubKriteria'])->name('admin.sub-kriteria.update');
+            Route::get('/sub/{id}', [KriteriaController::class, 'deleteSubKriteria'])->name('admin.sub-kriteria.destroy');
         });
         Route::prefix('/profile')->group(function(){
             Route::get('/', [ProfileController::class, 'index'])->name('admin.profile.index');
@@ -125,6 +128,7 @@ Route::middleware(['auth','role:mahasiswa'])->group(function () {
             Route::get('/', [PenilaianController::class, 'index'])->name('mahasiswa.penilaian.index');
             Route::get('/history', [PenilaianController::class, 'history'])->name('mahasiswa.penilaian.history');
             Route::get('/history/{id}', [PenilaianController::class, 'detail_history'])->name('mahasiswa.penilaian.detail_history');
+            Route::get('/cetak/{id}', [PenilaianController::class, 'generate_pdf'])->name('mahasiswa.penilaian.generate_pdf');
             Route::post('/', [PenilaianController::class, 'store'])->name('mahasiswa.penilaian.store');
         });
     });
