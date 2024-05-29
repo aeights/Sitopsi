@@ -57,9 +57,13 @@
                                     <input name="class" value="{{ $student->class }}" type="text" class="form-control" placeholder="Informatika">
                                 </div>
                                 <div class="form-group col-md-6">
+                                    <label>Username</label>
+                                    <input name="username" value="{{ $student->username }}" type="text" class="form-control" placeholder="Username">
+                                </div>
+                                {{-- <div class="form-group col-md-6">
                                     <label>email</label>
                                     <input name="email" value="{{ $student->email }}" type="text" class="form-control" placeholder="email">
-                                </div>
+                                </div> --}}
                                 {{-- <div class="form-group col-md-6">
                                     <label>Phone</label>
                                     <input name="phone" value="{{ $student->phone }}" type="text" class="form-control" placeholder="Informatika">
@@ -72,10 +76,7 @@
                                         <option value="Perempuan" {{ $student->gender == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                                     </select>
                                 </div> --}}
-                                <div class="form-group col-md-12">
-                                    <label>password</label>
-                                    <input name="password" type="password" disabled class="form-control" placeholder="*******">
-                                </div>                            </div>
+                            </div>
                             <button type="submit" class="btn btn-primary">Edit</button>
                         </form>
                     </div>

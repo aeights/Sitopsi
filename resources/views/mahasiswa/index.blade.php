@@ -16,6 +16,11 @@
             </ol>
         </div>
     </div>
+    <div class="col-lg-12">
+        <div class="card">
+            <img class="object-fit-cover" src="{{ asset('images/dashboard-banner.jpg') }}" alt="banner">
+        </div>
+    </div>
     <div class="row">
         <div class="col-lg-4 col-sm-6">
             <div class="card">

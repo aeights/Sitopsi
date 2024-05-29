@@ -37,13 +37,14 @@ class MahasiswaController extends Controller
         $request->validate([
             'role_id' => 'required',
             'name' => 'required',
+            'username' => 'required|unique:users,username',
             'nim' => 'required',
             'study_program' => 'required',
             'password' => 'required',
-            // 'phone' => 'required',
             'class' => 'required',
+            // 'phone' => 'required',
             // 'gender' => 'required',
-            'email' => 'required',
+            // 'email' => 'required',
         ]);
         try {
             User::create($request->all());
@@ -58,16 +59,15 @@ class MahasiswaController extends Controller
         $request->validate([
             'role_id' => 'required',
             'name' => 'required',
+            'username' => 'required|unique:users,username,'.$request->id,
             'nim' => 'required',
             'study_program' => 'required',
-            // 'password' => 'required',
-            // 'phone' => 'required',
             'class' => 'required',
+            // 'phone' => 'required',
             // 'gender' => 'required',
-            'email' => 'required',
+            // 'email' => 'required',
         ]);
         try {
-    
             User::where('id',$request->id)->update($request->except('_token'));
             return back()->with('success', 'Berhasil dirubah');
         } catch (\Throwable $th) {
@@ -77,7 +77,6 @@ class MahasiswaController extends Controller
 
     public function destroy($id){
         try{
-
             $mahasiswa = User::findOrFail($id);
             $mahasiswa->delete();
             return back()->with('success', 'Berhasil dihapus');

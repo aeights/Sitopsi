@@ -49,9 +49,13 @@
                                     <input name="class" type="text" class="form-control" placeholder="Informatika">
                                 </div>
                                 <div class="form-group col-md-6">
+                                    <label>Username</label>
+                                    <input name="username" type="text" class="form-control" placeholder="username">
+                                </div>
+                                {{-- <div class="form-group col-md-6">
                                     <label>email</label>
                                     <input name="email" type="text" class="form-control" placeholder="email">
-                                </div>
+                                </div> --}}
                                 {{-- <div class="form-group col-md-6">
                                     <label>Phone</label>
                                     <input name="phone" type="text" class="form-control" placeholder="Informatika">
@@ -65,9 +69,10 @@
                                     </select>
                                 </div> --}}
                                 <div class="form-group col-md-12">
-                                    <label>password</label>
+                                    <label>Password</label>
                                     <input name="password" type="text" class="form-control" placeholder="Informatika">
-                                </div>                            </div>
+                                </div>
+                            </div>
                             <button type="submit" class="btn btn-primary">Tambah</button>
                         </form>
                     </div>

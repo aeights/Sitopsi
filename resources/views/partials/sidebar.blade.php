@@ -46,7 +46,7 @@
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a class="has-arrows" href="{{ route('mahasiswa.alternatif.index') }}">
                     <i class="icon icon-app-store"></i>
                     <span class="nav-text">Alternatif</span>
@@ -57,7 +57,7 @@
                     <i class="icon icon-app-store"></i>
                     <span class="nav-text">Kriteria</span>
                 </a>
-            </li>  
+            </li>   --}}
             <li>
                 <a class="has-arrows" href="{{ route('mahasiswa.penilaian.index') }}">
                     <i class="icon icon-app-store"></i>

@@ -43,7 +43,7 @@
                                     <h5 class="text-center mb-2">Silahkan Login</h5>
                                     <div class="form-group">
                                         <label><strong>Email</strong></label>
-                                        <input type="email" name="email" class="form-control" placeholder="hello@example.com">
+                                        <input type="text" name="identifier" class="form-control" placeholder="Email atau Username">
                                     </div>
                                     <div class="form-group">
                                         <label><strong>Password</strong></label>
@@ -61,9 +61,9 @@
                                                     me</label>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <a href="#">Lupa Password</a>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </form>
                             </div>
