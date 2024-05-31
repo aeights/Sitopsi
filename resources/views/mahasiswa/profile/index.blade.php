@@ -40,11 +40,17 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-sm-3 col-form-label text-dark">Username</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" type="text" value="{{ $user->username }}" readonly>
+                        </div>
+                    </div>
+                    {{-- <div class="form-group row">
                         <label class="col-sm-3 col-form-label text-dark">Email</label>
                         <div class="col-sm-9">
                             <input class="form-control" type="text" value="{{ $user->email }}" readonly>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- <div class="form-group row">
                         <label class="col-sm-3 col-form-label text-dark">HP</label>
                         <div class="col-sm-9">

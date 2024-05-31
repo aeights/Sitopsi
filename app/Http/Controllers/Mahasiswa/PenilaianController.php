@@ -171,7 +171,7 @@ class PenilaianController extends Controller
             $penilaian->alternatif = $ranking[0][0];
             $penilaian->save();
         }
-
+        // dd($matrix_normalisasi,$matrix_normalisasi_w,$matrix,$concordance_dominan,$discordance_dominan,$agregasi,$ranking);
         return view('mahasiswa.penilaian.detail', [
             'matrix_normalisasi' => $matrix_normalisasi, 
             'matrix_normalisasi_w' => $matrix_normalisasi_w,

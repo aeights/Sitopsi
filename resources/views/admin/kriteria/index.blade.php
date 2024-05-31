@@ -198,20 +198,7 @@
         });
     </script> --}}
     <script>
-        $(document).ready(function() {
-            $('#bobotSubKriteria').on('keydown', function(e) {
-                // Cegah input karakter titik (.)
-                if (e.key === '.') {
-                    e.preventDefault();
-                }
-            });
-            $('#inputBobotEdit').on('keydown', function(e) {
-                // Cegah input karakter titik (.)
-                if (e.key === '.') {
-                    e.preventDefault();
-                }
-            });
-        });
+        
         function fillModalEdit(params) {
             var id = $(params).data('id');
             var keterangan = $(params).data('keterangan');

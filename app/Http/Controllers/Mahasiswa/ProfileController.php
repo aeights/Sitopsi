@@ -34,9 +34,10 @@ class ProfileController extends Controller
             'major' => 'required',
             'study_program' => 'required',
             'class' => 'required',
-            'email' => 'email|required|unique:users,email,'.Auth::user()->id,
-            'phone' => 'numeric|required|unique:users,phone,'.Auth::user()->id,
-            'gender' => 'required',
+            'username' => 'required|unique:users,username,'.Auth::user()->id,
+            // 'email' => 'email|required|unique:users,email,'.Auth::user()->id,
+            // 'phone' => 'numeric|required|unique:users,phone,'.Auth::user()->id,
+            // 'gender' => 'required',
         ]);
 
         if ($validated) {
