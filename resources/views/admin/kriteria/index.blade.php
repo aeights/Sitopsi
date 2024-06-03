@@ -88,7 +88,7 @@
                                                 <td>{{ $sub->keterangan }}</td>
                                                 <td>{{ $sub->value }}</td>
                                                 <td>
-                                                    <button class="badge badge-warning border-0" data-toggle="modal" data-target="#modalEditSub" data-id="{{ $sub->id }}" data-keterangan="{{ $sub->keterangan }}" data-value="{{ $sub->value }}" onclick="fillModalEdit(this)">Edit</button>
+                                                    <button class="badge badge-warning border-0" data-toggle="modal" data-target="#modalEditSub" data-kriteria="{{ $item->name }}" data-id="{{ $sub->id }}" data-keterangan="{{ $sub->keterangan }}" data-value="{{ $sub->value }}" onclick="fillModalEdit(this)">Edit</button>
                                                     <a href="{{ route('admin.sub-kriteria.destroy', $sub->id) }}" class="badge badge-danger">Delete</a>
                                                 </td>
                                             </tr>
@@ -133,7 +133,7 @@
 
                     <div class="form-group">
                         <label for="">Bobot Sub Kriteria</label>
-                        <input id="bobotSubKriteria" type="number" class="form-control" name="value">
+                        <input id="bobotSubKriteria" type="number" class="form-control" name="value" step="0.01">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -160,7 +160,7 @@
                     <input id="subId" type="hidden" name="sub_id">
                     <div class="form-group">
                         <label for="">Pilih Kriteria</label>
-                        <select class="form-control" id="input-topik" name="kriterias_id">
+                        <select class="form-control" id="input-topik-edit" name="kriterias_id">
                             @foreach ($kriterias as $item)
                                 <option value="{{ $item->id }}" attrBobot="{{ $item->id }}">{{$item->name}}</option>
                             @endforeach
@@ -174,7 +174,7 @@
 
                     <div class="form-group">
                         <label for="">Bobot Sub Kriteria</label>
-                        <input id="inputBobotEdit" id="bobotSubKriteria" type="number" class="form-control" name="value">
+                        <input id="inputBobotEdit" id="bobotSubKriteria" type="number" class="form-control" name="value" step="0.01">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -198,8 +198,19 @@
         });
     </script> --}}
     <script>
-        
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     var selectElement = document.getElementById('input-topik');
+        //     var selectedText = "Nama Kriteria";
+
+        //     for (var i = 0; i < selectElement.options.length; i++) {
+        //         if (selectElement.options[i].text === selectedText) {
+        //             selectElement.selectedIndex = i;
+        //             break;
+        //         }
+        //     }
+        // });
         function fillModalEdit(params) {
+            var kriteria = $(params).data('kriteria');
             var id = $(params).data('id');
             var keterangan = $(params).data('keterangan');
             var value = $(params).data('value');

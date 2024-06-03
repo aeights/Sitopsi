@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('kriterias_id');
             $table->string('keterangan');
-            $table->integer('value');
+            $table->decimal('value');
             $table->foreign('kriterias_id')->references('id')->on('kriterias')->onDelete('cascade');
             $table->timestamps();
         });

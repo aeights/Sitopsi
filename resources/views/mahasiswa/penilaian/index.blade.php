@@ -131,8 +131,10 @@
                 var optionPenilaian  = document.querySelectorAll('[id^="sub-kriteria-"]');
                 optionPenilaian.forEach(element => {
                     tableBody += `<td>${getSelectedBobot(element)}</td>`
-                    dc.push(parseInt(getSelectedBobot(element)))
+                    dc.push(parseFloat(getSelectedBobot(element)))
+                    console.log(typeof(element));
                 });
+                console.log(dc);
                 data.push({
                     code: getSelectedText(inputTopik),
                     kriterias: dc,

@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
+        {{-- <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Nilai Matrix Keputusan</h4>
@@ -48,12 +48,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Matrix</h4>
+                    <h4 class="card-title">Matrix Keputusan</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -162,7 +162,8 @@
                                     <tr role="row">
                                         <th>Kode</th>
                                         @for ($i = 1; $i < count($concordance_matrix[0]); $i++)
-                                            <th>C{{ $i }}</th>
+                                            {{-- <th>C{{ $i }}</th> --}}
+                                            <th></th>
                                         @endfor
                                     </tr>
                                 </thead>
@@ -195,7 +196,8 @@
                                     <tr role="row">
                                         <th>Kode</th>
                                         @for ($i = 1; $i < count($discordance_matrix[0]); $i++)
-                                            <th>C{{ $i }}</th>
+                                            {{-- <th>C{{ $i }}</th> --}}
+                                            <th></th>
                                         @endfor
                                     </tr>
                                 </thead>
@@ -228,7 +230,8 @@
                                     <tr role="row">
                                         <th>Kode</th>
                                         @for ($i = 1; $i < count($agregasi[0]); $i++)
-                                            <th>C{{ $i }}</th>
+                                            {{-- <th>C{{ $i }}</th> --}}
+                                            <th></th>
                                         @endfor
                                     </tr>
                                 </thead>

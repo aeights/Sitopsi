@@ -12,7 +12,10 @@ class KriteriaController extends Controller
 {
     public function index()
     {
-        $kriterias = Kriteria::with('sub_kriteria')->get();
+        // $kriterias = Kriteria::with('sub_kriteria')->get();
+        $kriterias = Kriteria::with(['sub_kriteria' => function ($query) {
+            $query->orderBy('value', 'desc');
+        }])->get();
         return view('admin.kriteria.index', ['kriterias' => $kriterias]);
     }
     public function add()
@@ -66,7 +69,7 @@ class KriteriaController extends Controller
         $request->validate([
             'kriterias_id' => 'required',
             'keterangan' => 'required',
-            'value' => 'required|integer',
+            'value' => 'required',
         ]);
         try {
             SubKriteria::create($request->all());
@@ -83,7 +86,7 @@ class KriteriaController extends Controller
             'sub_id' => 'required',
             'kriterias_id' => 'required',
             'keterangan' => 'required',
-            'value' => 'required|integer',
+            'value' => 'required',
         ]);
         try {
             SubKriteria::find($request->sub_id)->update([
