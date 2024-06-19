@@ -54,6 +54,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Matrix Keputusan</h4>
+                    {{-- <a href="{{ route('mahasiswa.penilaian.generate_pdf', $id) }}" class="btn btn-danger">Cetak</a> --}}
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -251,6 +252,7 @@
             </div>
         </div>
 
+        @if ($alternatif_elimination == null)
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
@@ -280,6 +282,70 @@
                 </div>
             </div>
         </div>
+        @else
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Eliminasi Ranking</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div id="example_wrapper" class="dataTables_wrapper">
+                            <table id="example1" class="display dataTable" style="min-width: 845px" role="grid" aria-describedby="example_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th>Kode</th>
+                                        @for ($i = 1; $i < count($alternatif_elimination[0]); $i++)
+                                            <th></th>
+                                        @endfor
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for ($i = 0; $i < count($alternatif_elimination); $i++)                          
+                                    <tr>
+                                        @for ($j = 0; $j < count($alternatif_elimination[0]); $j++)
+                                            <td>{{ $alternatif_elimination[$i][$j] }}</td>
+                                        @endfor
+                                    </tr>
+                                    @endfor
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Ranking</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div id="example_wrapper" class="dataTables_wrapper">
+                            <table id="example1" class="display dataTable" style="min-width: 845px" role="grid" aria-describedby="example_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th>No</th>
+                                        <th>Alternatif</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for ($i = 0; $i < count($ranking); $i++)                          
+                                    <tr>
+                                        <td>{{ $i+1 }}</td>
+                                        <td>{{ $ranking[$i][0] }}</td>
+                                    </tr>
+                                    @endfor
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </
+        @endif
     </div>
 </div>
 @endsection

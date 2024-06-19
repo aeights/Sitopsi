@@ -83,6 +83,28 @@ class PenilaianController extends Controller
         $discordance_dominan = $this->dominan($discordance_matrix, $threshold_dis);
         $agregasi = $this->agregasi($concordance_dominan, $discordance_dominan);
 
+        $cekAgregasi = $this->cekAgregasi($agregasi);
+        if ($cekAgregasi) {
+            $alternatifElimination = $this->alternatifElimination($penilaian,$concordance_matrix,$discordance_matrix);
+            $x = 0;
+            foreach($penilaian as $p) { 
+                array_unshift($agregasi[$x], $p->alternatif);
+                array_unshift($concordance_dominan[$x], $p->alternatif);
+                array_unshift($discordance_dominan[$x], $p->alternatif);
+                array_unshift($matrix_normalisasi[$x], $p->alternatif);
+                array_unshift($matrix_normalisasi_w[$x], $p->alternatif);
+                array_unshift($matrix[$x], $p->alternatif);
+                array_unshift($alternatifElimination[$x], $p->alternatif);
+                $x++;
+            }
+
+            $ranking = $alternatifElimination;
+            $this->eliminationRanking($ranking);
+
+            $pdf = PDF::loadView('mahasiswa.penilaian.pdf', ['rangking' => $ranking]);
+            return $pdf->stream('file.pdf');
+        }
+
         $x = 0;
         foreach($penilaian as $p) { 
             array_unshift($agregasi[$x], $p->alternatif);
@@ -152,6 +174,42 @@ class PenilaianController extends Controller
         $agregasi = $this->agregasi($concordance_dominan, $discordance_dominan);
         // dd($matrix_normalisasi_w, $concordance_matrix, $threshold_con, $threshold_dis, $concordance_dominan, $discordance_matrix, $discordance_dominan, $agregasi);
 
+        $cekAgregasi = $this->cekAgregasi($agregasi);
+        if ($cekAgregasi) {
+            $alternatifElimination = $this->alternatifElimination($penilaian,$concordance_matrix,$discordance_matrix);
+            $x = 0;
+            foreach($penilaian as $p) { 
+                array_unshift($agregasi[$x], $p->alternatif);
+                array_unshift($concordance_dominan[$x], $p->alternatif);
+                array_unshift($discordance_dominan[$x], $p->alternatif);
+                array_unshift($matrix_normalisasi[$x], $p->alternatif);
+                array_unshift($matrix_normalisasi_w[$x], $p->alternatif);
+                array_unshift($matrix[$x], $p->alternatif);
+                array_unshift($alternatifElimination[$x], $p->alternatif);
+                $x++;
+            }
+
+            $ranking = $alternatifElimination;
+            $this->eliminationRanking($ranking);
+            $penilaian= Penilaian::find($id);
+            if(!$penilaian->alternatif){
+                $penilaian->alternatif = $alternatifElimination[0][0];
+                $penilaian->save();
+            }
+
+            return view('mahasiswa.penilaian.detail', [
+                'matrix_normalisasi' => $matrix_normalisasi, 
+                'matrix_normalisasi_w' => $matrix_normalisasi_w,
+                'matrix' => $matrix,
+                'concordance_matrix' => $concordance_dominan,
+                'discordance_matrix' => $discordance_dominan,
+                'agregasi' => $agregasi,
+                'alternatif_elimination' => $alternatifElimination,
+                'ranking' => $ranking,
+                'id' => $id,
+            ]);
+        }
+
         $x = 0;
         foreach($penilaian as $p) { 
             array_unshift($agregasi[$x], $p->alternatif);
@@ -164,7 +222,6 @@ class PenilaianController extends Controller
         }
         $x = 0;
         $ranking = $this->rangking_agregasi($agregasi);
-        // dd($ranking);
 
         $penilaian= Penilaian::find($id);
         if(!$penilaian->alternatif){
@@ -179,6 +236,7 @@ class PenilaianController extends Controller
             'concordance_matrix' => $concordance_dominan,
             'discordance_matrix' => $discordance_dominan,
             'agregasi' => $agregasi,
+            'alternatif_elimination' => null,
             'ranking' => $ranking,
             'id' => $id,
         ]);
@@ -346,6 +404,40 @@ class PenilaianController extends Controller
             array_push($agregasi, $row_agregasi);
         }
         return $agregasi;
+    }
+
+    public function cekAgregasi($agregasi)
+    {
+        foreach ($agregasi as $subArray) {
+            foreach ($subArray as $value) {
+                if ($value != 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public function alternatifElimination($label,$con,$dis)
+    {
+        $result = [];
+
+        for ($i = 0; $i < count($con); $i++) {
+            $rowDifference = [];
+            for ($j = 0; $j < count($con[$i]); $j++) {
+                $rowDifference[] = $con[$i][$j] - $dis[$i][$j];
+            }
+            $result[] = [array_sum($rowDifference)];
+        }
+
+        return $result;
+    }
+
+    public function eliminationRanking(&$data)
+    {
+        usort($data, function($a, $b) {
+            return $b[1] <=> $a[1];
+        });
     }
 
     public function store(Request $request){
